@@ -15,8 +15,14 @@ function BookList(props) {
       <div className='book-list'>
         <ul style={styles.ul}>
           { props.books.map((book, index) => {
-              return <BookItem book={book} key={book.id} index={index} /> // key не обязательно, но тулза ругается!
-          }) }
+              return (
+              <BookItem 
+                book={book} 
+                key={book.id}                             // key не обязательно, но тулза ругается!
+                index={index} 
+                onChange={props.onToggle} />
+              )
+            })}
         </ul>  
     </div>
     </div>
@@ -25,7 +31,8 @@ function BookList(props) {
 
 // Библиотека для определения типа данных
 BookList.propTypes = {
-    books: PropTypes.arrayOf(PropTypes.object).isRequired //массив из объектов 
+    books: PropTypes.arrayOf(PropTypes.object).isRequired, //массив из объектов 
+    onToggle: PropTypes.func.isRequired
 }
 
 export default BookList

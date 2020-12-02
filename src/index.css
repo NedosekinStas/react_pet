@@ -25,3 +25,17 @@ code {
 .book-list {
   display: block;
 }
+
+.completed {
+  text-decoration: line-through;
+}
+
+.add-form {
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.add-form input {
+  margin: 0 15px 0 0;
+}

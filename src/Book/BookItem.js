@@ -1,5 +1,7 @@
-import { findByLabelText } from '@testing-library/react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import Context from '../context'
+import { useState } from 'react';
 
 const styles = {
   li: {
@@ -12,27 +14,40 @@ const styles = {
   input: {
     margin: '0 15px 0 0'
   } 
-}
+};
 
 // Забираем ключ из BookItem book={book}
-function BookItem({ book, index }) {
+function BookItem({ book, index, onChange }) {
+  // Передаем контекст который получили
+  const {removeBook} = useContext(Context)          
+  const classes = []
+
+ if (book.completed){
+   classes.push('completed')
+ };
+
   return (
     <li style={styles.li}>
-      <span>
-        <input style={styles.input} type="checkbox" />
+      <span className={classes.join(' ')}>
+        <input 
+          style={styles.input} 
+          type='checkbox'
+          checked={book.completed}              
+          onChange={() => onChange(book.id)}/>
       <strong>{index + 1}.</strong>
       &nbsp;
       {book.title}
       </span>
 
-      <button>&times;</button>
+      <button onClick={removeBook.bind(null, book.id)}>&times;</button>
     </li>    
   )
 }
 
 BookItem.propTypes = {
   book: PropTypes.object.isRequired,
-  index: PropTypes.number
-}
+  index: PropTypes.number,
+  onChange: PropTypes.func.isRequired
+};
 
-export default BookItem
+export default BookItem;
