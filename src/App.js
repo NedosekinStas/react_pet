@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import BookList from './Book/BookList'
 
 function App() {
+  const books = [
+    { id: 1, completed: false, title: 'А.С Пушкин. Сказка о царе Салтане' },
+    { id: 2, completed: false, title: 'В.В Набоков. Камера обскура' },
+    { id: 3, completed: false, title: 'Н.В Гоголь. Вечера на хуторе близ Диканьки' }
+  ]
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='wrapper'>
+      <h1>Title index</h1>
+
+      <BookList books={books} />
     </div>
   );
 }
